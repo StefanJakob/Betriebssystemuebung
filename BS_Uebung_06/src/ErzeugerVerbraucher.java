@@ -1,57 +1,72 @@
-import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.Semaphore;
+import java.util.LinkedList;
+import java.util.concurrent.locks.*;
 
 public class ErzeugerVerbraucher {
 
-	static Queue<String> queue = new LinkedList<String>();
-	static Semaphore mutex = new Semaphore(1, true);
-	static Semaphore leer = new Semaphore(5, true);
-	static Semaphore belegt = new Semaphore(0, true);
-	
-	static Runnable konditor1 = new Runnable() {
-		public void run() {
-			while (true) {
-				/**
-				 * Code einfügen
-				 */
-			}
-		}
-	};
-	
-	static Runnable konditor2 = new Runnable() {
-		public void run() {
-			while (true) {
-				/**
-				 * Code einfügen
-				 */
-			}
-		}
-	};
-	
-	static Runnable verbraucher = new Runnable() {
-		public void run() {
-			while (true) {
+	private final Queue<String> itemqueue = new LinkedList<String>();
+	private final Lock lock = new ReentrantLock();
+	private final Condition notFull = lock.newCondition();
+	private final Condition notEmpty = lock.newCondition();
 
-				/**
-				 * Code einfügen
-				 */
-
-			}
-		}
-	};
-	
-	public static String produziere() {return "Kuchen"; }
-
-	public static void verbrauche(String stueck) {System.out.println("Verbrauche " + stueck);}
-
-	public static void einfuegen(String stueck){ queue.offer(stueck); }
-
-	public static String entnehmen(){ return queue.poll(); }
-	
 	public static void main(String[] args) {
-		new Thread(konditor1).start();
-		new Thread(konditor2).start();
-		new Thread(verbraucher).start();
+		final ErzeugerVerbraucher erzeugerVerbraucher = new ErzeugerVerbraucher();
+
+		class Produzent implements Runnable {
+
+			public void run() {
+//				try {
+//					while (true) {
+//						/**
+//						 * Insert code here.
+//						 */
+//					}
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+			}
+		}
+
+		class Konsument implements Runnable {
+
+			public void run() {
+//				try {
+//					while (true) {
+//						/**
+//						 * Insert code here.
+//						 */
+//					}
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+			}
+		}
+
+		Thread produzent1 = new Thread(new Produzent());
+		Thread produzent2 = new Thread(new Produzent());
+
+		Thread konsument1 = new Thread(new Konsument());
+		Thread konsument2 = new Thread(new Konsument());
+
+		produzent1.start();
+		produzent2.start();
+		konsument1.start();
+		konsument2.start();
+	}
+
+	public void anbieten() {
+
+		/**
+		 * Insert code here.
+		 */
+
+	}
+
+	public void konsumieren() {
+
+		/**
+		 * Insert code here.
+		 */
+
 	}
 }
