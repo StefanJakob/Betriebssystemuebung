@@ -12,7 +12,7 @@ public class ErzeugerVerbraucher {
 	private final Condition notEmpty = lock.newCondition();
 
 	public static void main(String[] args) {
-		final Baeckerei baeckerei = new Baeckerei();
+		final ErzeugerVerbraucher erzeugerVerbraucher = new ErzeugerVerbraucher();
 
 		class Produzent implements Runnable {
 
