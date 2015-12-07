@@ -1,12 +1,10 @@
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.concurrent.locks.*;
-import java.util.concurrent.TimeUnit;
-import java.util.Random;
 
 public class ErzeugerVerbraucher {
 
-	private final Queue<String> auslage = new LinkedList<String>();
+	private final Queue<String> itemqueue = new LinkedList<String>();
 	private final Lock lock = new ReentrantLock();
 	private final Condition notFull = lock.newCondition();
 	private final Condition notEmpty = lock.newCondition();
