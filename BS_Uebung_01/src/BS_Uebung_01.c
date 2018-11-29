@@ -10,13 +10,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <io.h>
 
 int main(void) {
-	puts("Uebung 01");
 
-	/**
-	 * Please insert your system calls here.
-	 */
+	FILE* file;
 
+	char name[5] = "TEST";
 	return EXIT_SUCCESS;
 }
